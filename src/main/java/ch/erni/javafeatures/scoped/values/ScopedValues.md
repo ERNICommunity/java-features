@@ -1,5 +1,12 @@
 # Scoped Values
 
+<!-- TOC -->
+* [Scoped Values](#scoped-values)
+  * [Erklärung](#erklärung)
+    * [Verwendung:](#verwendung)
+  * [Aufgabe](#aufgabe)
+<!-- TOC -->
+
 ## Erklärung
 Scoped Values sind eine Form von impliziten Methodenparametern, die es ermöglichen, einen oder mehrere Werte (d. h. 
 beliebige Objekte) an eine oder mehrere weit entfernte Methoden zu übergeben, ohne sie als explizite Parameter zu jeder 
@@ -66,3 +73,8 @@ damit das Objekt User nicht mehr als Parameter durch die Methoden durchgereicht 
 **Anmerkung:** Im TestModul findet ihr die Klasse 
 [ServerTest](../../../../../../../test/java/ch/erni/javafeatures/scoped/values/ServerTest.java).<br>
 Mit ihr könnt ihr prüfen, ob die Funktionalität noch gewährleistet ist.
+
+## Quellen
+- [happycoders Java 23 Features](https://www.happycoders.eu/de/java/java-23-features/#Scoped_Values_Third_Preview_-_JEP_481)
+- [happycoders Scoped Values](https://www.happycoders.eu/de/java/scoped-values/)
+- [Youtube What Scoped Values in Java 21?](https://www.youtube.com/watch?v=U2UgxHYO2bE)
