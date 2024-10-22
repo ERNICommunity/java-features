@@ -32,6 +32,8 @@ Führt man aktuell die Main-Methode von `Child aus`, erhält man folgendes:
 > a = 1
 > 
 > b = 0
+> 
+> Die Constructor-Werte dürfen nicht negativ sein
 
 Der Grund ist, dass `printMe()` in Parent ausgeführt wird, bevor `b` im Child-Constructor initialisiert werden konnte.
 
@@ -42,6 +44,8 @@ Passe den Konstruktor folgendermassen an:
 > a = 1
 >
 > b = 2
+> 
+> Die Constructor-Werte dürfen nicht negativ sein
 
 ## Quellen
 - [happycoders Java 23 Features](https://www.happycoders.eu/de/java/java-23-features/#Scoped_Values_Third_Preview_-_JEP_481)

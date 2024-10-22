@@ -10,7 +10,7 @@ public class Child extends Parent {
     }
 
     private static int verifyBothPositive(int a, int b) {
-        if (a < 0 || b < 0) throw new IllegalArgumentException();
+        if (a < 0 || b < 0) throw new IllegalArgumentException("Die Constructor-Werte dürfen nicht negativ sein");
         return a;
     }
 
@@ -22,5 +22,11 @@ public class Child extends Parent {
 
     public static void main(String[] args) {
         new Child(1, 2);
+
+        try {
+            new Child(-1, -2);
+        } catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
