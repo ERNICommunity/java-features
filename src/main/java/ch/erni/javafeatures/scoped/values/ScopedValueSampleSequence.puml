@@ -11,6 +11,8 @@ Repository -> UseCase: data
 deactivate Repository
 UseCase -> RestAdapter: data
 deactivate UseCase
+RestAdapter -> Server: data
+deactivate RestAdapter
 
 RestAdapter -[#red]> Repository: getUser() ??
 @enduml
