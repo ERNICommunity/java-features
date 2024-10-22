@@ -1,0 +1,16 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+Server -> RestAdapter: processRequest(request)
+activate RestAdapter
+RestAdapter -> UseCase: invoke(id, loggedInuser)
+activate UseCase
+UseCase -> Repository: getData(id, loggedInUser)
+activate Repository
+Repository -> UseCase: data
+deactivate Repository
+UseCase -> RestAdapter: data
+deactivate UseCase
+
+RestAdapter -[#red]> Repository: getUser() ??
+@enduml
