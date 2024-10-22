@@ -5,13 +5,13 @@ public class Child extends Parent {
     private final int b;
 
     public Child(int a, int b) {
-        super(verifyBothPositive(a, b));
+        verifyBothPositive(a, b);
         this.b = b;
+        super(a);
     }
 
-    private static int verifyBothPositive(int a, int b) {
+    private static void verifyBothPositive(int a, int b) {
         if (a < 0 || b < 0) throw new IllegalArgumentException("Die Constructor-Werte dürfen nicht negativ sein");
-        return a;
     }
 
     @Override
