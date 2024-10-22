@@ -56,3 +56,7 @@ Die Klasse `Server` erzeugt diesen Code-Flow:
 - Verwende das **Scoped Value Feature**, in der Klasse `Server`,
 damit das Objekt User nicht mehr als Parameter durch die Methoden durchgereicht werden muss.<br>
 - verwende das ScopedValue in `Repository`, um wieder an den User zu kommen.
+
+**Anmerkung:** Im TestModul findet ihr die Klasse 
+[ServerTest](../../../../../../../test/java/ch/erni/javafeatures/scoped/values/ServerTest.java).<br>
+Mit ihr könnt ihr prüfen, ob die Funktionalität noch gewährleistet ist.
