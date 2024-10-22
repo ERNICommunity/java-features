@@ -26,8 +26,14 @@ public class Foo {
         OtherClass otherClass = new OtherClass();
         Bar bar = initBar();
         
+        // Variante für void-Methoden
         ScopedValue.where(MY_SCOPED_BAR, bar)
                 .run(() -> otherClass.process());
+        
+        // Variante für Methoden mit Return-Type:
+        Object result = ScopedValue.where(MY_SCOPED_BAR, bar)
+                .call(() -> otherClass.getObject());
+        
         // Solange der Callstack otherClass.process() existiert und eine Referenz auf unser Scoped Value 
         // existiert, ist der Wert verfügbar
     }
