@@ -4,9 +4,9 @@ import java.util.UUID;
 
 public class UseCase {
 
-    public Data invoke(UUID id, User loggedInUser) {
+    public Data invoke(UUID id) {
         // mach irgendwas
-        Data data = new Repository().getData(id, loggedInUser);
+        Data data = new Repository().getData(id);
         // arbeite weiter
         return data;
     }

@@ -2,6 +2,7 @@ package ch.erni.javafeatures.scoped.values;
 
 public class Server {
 
+    public static final ScopedValue<User> LOGGED_IN_USER = ScopedValue.newInstance();
     private User authenticatedUser = new User("Servus", true);
 
     /// Returnt das Objekt `Data`.
@@ -16,9 +17,17 @@ public class Server {
     public Data serve(Request request) {
         // ...
         User user = authenticateUser(request);
-        Data data = new RestAdapter().processRequest(request, user);
+        RestAdapter restAdapter = new RestAdapter();
+        Data data = ScopedValue.where(LOGGED_IN_USER, user)
+                .call(() -> restAdapter.processRequest(request));
         // ...
         return data;
+    }
+
+    public Data serveWithoudScopedValueWillCauseException(Request request) {
+        User user = authenticateUser(request);
+        RestAdapter restAdapter = new RestAdapter();
+        return restAdapter.processRequest(request);
     }
 
     /// Dummy-Methode um Funktionalität zu simulieren.

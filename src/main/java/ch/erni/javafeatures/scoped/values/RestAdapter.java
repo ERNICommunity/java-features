@@ -4,10 +4,10 @@ import java.util.UUID;
 
 public class RestAdapter {
 
-    public Data processRequest(Request request, User loggedInUser) {
+    public Data processRequest(Request request) {
         // ...
         UUID id = extractId(request);
-        Data invoke = new UseCase().invoke(id, loggedInUser);
+        Data invoke = new UseCase().invoke(id);
         // ...
         return invoke;
     }
