@@ -24,27 +24,16 @@ public class RecordPatterns {
      * @return String to describe object
      */
     static String getObjectDescription(Object object) {
-        if (object == null) {
-            return "Object with value null";
-        }
         return switch (object) {
+            case null -> "Object with value null";
             case Point ignored -> "Point with ignored values";
-            case Rectangle rectangle -> {
-                ColoredPoint upperLeft = rectangle.upperLeft();
-                ColoredPoint lowerRight = rectangle.lowerRight();
-                int upperLeftPointX = upperLeft.pt().x();
-                Color lowerRightPointColor = lowerRight.color();
-                yield String.format("upperLeftPointX: %s / lowerRightPointColor color: %s",
-                        upperLeftPointX, lowerRightPointColor);
-            }
+            case Rectangle(
+                    ColoredPoint(Point(var upperLeftPointX, _), _),
+                    ColoredPoint(Point(var _, _), var lowerRightPointColor)
+            ) ->
+                    String.format("upperLeftPointX: %s / lowerRightPointColor color: %s", upperLeftPointX, lowerRightPointColor);
             case int i -> String.format("Integer %d", i);
-            case String s -> {
-                if (s.startsWith("known")) {
-                    yield String.format("String starting with 'known': '%s'", s);
-                } else {
-                    yield "There is no description defined for this object: " + object;
-                }
-            }
+            case String s when s.startsWith("known") -> String.format("String starting with 'known': '%s'", s);
             default -> "There is no description defined for this object: " + object;
         };
     }

@@ -1,6 +1,8 @@
 package ch.erni.javafeatures.streamgatherers;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Gatherers;
 
 public class StreamGatherers {
 
@@ -12,11 +14,10 @@ public class StreamGatherers {
      * @return multiplication result
      */
     static int multiplyIntegers(List<Integer> integersToMultiply) {
-        int product = 1;
-        for (Integer integer : integersToMultiply) {
-            product *= integer;
-        }
-        return product;
+        return integersToMultiply.stream().gather(Gatherers.fold(() -> 1, (a, b) -> a * b))
+                .findFirst()
+                .orElseThrow(() ->
+                        new IllegalArgumentException("At least one element is needed for result"));
     }
 
     /**
@@ -29,28 +30,12 @@ public class StreamGatherers {
      * @return maximum sum from numberOfConsecutiveDays consecutive days in numberOfSalesForEachDay
      */
     static int maxTotalSalesInDays(List<Integer> numberOfSalesForEachDay, int numberOfConsecutiveDays) {
-        // Validate inputs
-        if (numberOfSalesForEachDay == null || numberOfSalesForEachDay.isEmpty() || numberOfConsecutiveDays == 0) {
-            throw new IllegalArgumentException("input argument is not correct");
-        }
+        return numberOfSalesForEachDay.stream()
+                .gather(Gatherers.windowSliding(numberOfConsecutiveDays))
+                .map(integers -> integers.stream().mapToInt(Integer::intValue).sum())
+                .max(Comparator.comparingInt(i -> i))
+                .orElseThrow(() -> new IllegalArgumentException("Number of days need to be more than 0"));
 
-        int maxSum;
-        int currentSum = 0;
-
-        // Calculate the sum of the first 'numberOfConsecutiveDays' sales figures
-        for (int i = 0; i < numberOfConsecutiveDays; i++) {
-            if (i < numberOfSalesForEachDay.size()) {
-                currentSum += numberOfSalesForEachDay.get(i);
-            }
-        }
-        maxSum = currentSum; // Initialize maxSum with the first window sum
-
-        // Calculate the rest of the sums
-        for (int i = numberOfConsecutiveDays; i < numberOfSalesForEachDay.size(); i++) {
-            currentSum += numberOfSalesForEachDay.get(i) - numberOfSalesForEachDay.get(i - numberOfConsecutiveDays);
-            maxSum = Math.max(maxSum, currentSum); // Update maxSum if currentSum is greater
-        }
-        return maxSum;
     }
 
 }
