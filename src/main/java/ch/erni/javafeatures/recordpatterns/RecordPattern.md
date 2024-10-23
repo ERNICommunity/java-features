@@ -98,11 +98,11 @@ static void testNew(Object obj) {
 }
 ```
 ## Task
-- Rewrite the Method getObjectDescription in the file [RecordPatterns.java](RecordPatterns.java)
+- Rewrite the method getObjectDescription in the file [RecordPatterns.java](RecordPatterns.java)
 - Use JDK 23 and wherever possible features which were mentioned above (switch statement, pattern matching, decomposition)
 - Goal is that [the Unit Test for this class](RecordPatternsTest.java) passes again after your refactoring
 
-## Quellen
+## Sources
 - https://openjdk.org/jeps/440
 - https://entwickler.de/java/javaneuenzehn-recordpatterns-patternmatching
 - https://inside.java/2023/11/06/sip087/
